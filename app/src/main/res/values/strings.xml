@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PrimerTaller</string>
+    <string name="check_recordar">Recordar mis datos</string>
+    <string name="check_terminos">Terminos y condiciones</string>
+    <string name="text_usuario">Usuario</string>
+    <string name="text_password">Contraseña</string>
+    <string name="btn_ingresar">Ingresar</string>
+    <string name="btn_registrar">Registrar</string>
+</resources>
