@@ -60,7 +60,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5sp"
-                android:layout_weight="2"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textColor="#FFFFFF"
@@ -88,22 +87,25 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5sp"
                     android:layout_marginRight="10sp"
-                    android:layout_weight="4"
+                    android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPassword"
                     android:textColor="#FFFFFF"
                     android:textColorHint="#FFFFFF" />
 
                 <Button
-                    android:id="@+id/button3"
-                    android:layout_width="61dp"
+                    android:id="@+id/btn_verPassword"
+                    android:layout_width="10sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight=".7"
                     app:backgroundTint="#E91E63"
                     app:cornerRadius="100sp"
-                    app:icon="@drawable/ic_action_name"
+
+                    app:icon="@drawable/password_show"
+
                     app:iconGravity="textStart"
                     app:iconPadding="0dp" />
+
             </LinearLayout>
 
             <LinearLayout
