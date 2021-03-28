@@ -31,11 +31,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Button verPassword,ingresar,registrar;
     EditText user,password;
-<<<<<<< HEAD
     TextView txtError;
-=======
     TextView olvidar;
->>>>>>> puello
     Boolean controlVerPassword = true;
     CheckBox check_recordar, check_terminos;
     ArrayList<String> usuarios;
@@ -52,27 +49,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         password = findViewById(R.id.edit_password);
         check_recordar = findViewById(R.id.check_recordar);
         check_terminos = findViewById(R.id.check_terminos);
-<<<<<<< HEAD
         txtError = findViewById(R.id.txt_login_error);
-=======
         olvidar = findViewById(R.id.txvolvidar);
->>>>>>> puello
-
         check_terminos.setOnClickListener(this);
         verPassword.setOnClickListener(this);
         ingresar.setOnClickListener(this);
         registrar.setOnClickListener(this);
         ingresar.setEnabled(false);
-<<<<<<< HEAD
-
         adminFunciones.cargarPreferencias(user,password,check_recordar);
         adminFunciones.CreateUsuarios();
-
         txtError.setText("");
-=======
         olvidar.setOnClickListener(this);
-        cargarPreferencias();
->>>>>>> puello
+        adminFunciones.cargarPreferencias(user,password,check_recordar);
 
     }
 
@@ -118,23 +106,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(!user.getText().toString().isEmpty() && !password.getText().toString().isEmpty() ){
                     String _user = user.getText().toString();
                     String _pass = password.getText().toString();
+                    String valores = adminFunciones.IniciarSesion(_user,_pass);
+
                     if(check_recordar.isChecked())
                     {
                         adminFunciones.guardarPreferencias(true,_user,_pass,true);
-                        String valores = adminFunciones.IniciarSesion(_user,_pass);
-                        if(valores.equals("")){
-                            txtError.setText("Datos Invalidos");
-                        }
-                        else{
-                            txtError.setText("");
-                            Toast.makeText(this,"Bienvenido: " + valores,Toast.LENGTH_LONG).show();
-                        }
-
                     }
                     else{
                         adminFunciones.NoguardarPreferencias();
                         Toast.makeText(this,"No Guardado",Toast.LENGTH_LONG).show();
                     }
+
+                    if(valores.equals("")){
+                        txtError.setText("Datos Invalidos");
+                    }
+                    else{
+                        txtError.setText("");
+                        Toast.makeText(this,"Bienvenido: " + valores,Toast.LENGTH_LONG).show();
+                    }
+
+
 
                 }
                 break;
