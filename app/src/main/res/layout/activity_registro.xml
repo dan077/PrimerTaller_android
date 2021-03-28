@@ -56,7 +56,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/register_nombre2"
+                android:id="@+id/register_nombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5sp"
@@ -74,7 +74,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/register_apellido2"
+                android:id="@+id/register_apellido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5sp"
@@ -92,7 +92,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/register_correo2"
+                android:id="@+id/register_correo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5sp"
@@ -170,7 +170,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_registrar"
+                android:id="@+id/btn_registro_registrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_registrar"

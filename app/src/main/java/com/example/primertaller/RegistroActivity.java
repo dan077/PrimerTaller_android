@@ -11,11 +11,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class RegistroActivity extends AppCompatActivity implements View.OnClickListener {
     Spinner sexo;
-    Button regresar,verPassword;
-    EditText password;
+    Button regresar,verPassword,registrar;
+    EditText password,correo,nombre,apellido;
     boolean controlVerPassword = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +24,15 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_registro);
         sexo = findViewById(R.id.register_spinner_sexo);
         regresar = findViewById(R.id.btn_registro_regresar);
+        registrar = findViewById(R.id.btn_registro_registrar);
         verPassword = findViewById(R.id.btn_registro_verPass);
         password = findViewById(R.id.register_password);
+        correo = findViewById(R.id.register_correo);
+        nombre = findViewById(R.id.register_nombre);
+        apellido = findViewById(R.id.register_apellido);
         verPassword.setOnClickListener(this);
         regresar.setOnClickListener(this);
+        registrar.setOnClickListener(this);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.spinner_sexo, android.R.layout.simple_spinner_item);
@@ -39,6 +45,22 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.btn_registro_registrar:
+                if(password.getText().toString().isEmpty()|| password.toString().length() <= 6 || correo.getText().toString().isEmpty()|| nombre.getText().toString().isEmpty() ||
+                    apellido.getText().toString().isEmpty())
+                {
+                    if(password.getText().toString().length() <= 6) {
+                        Toast.makeText(this, "La contraseña debe contener más de 6 caracteres", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(this, "Alguna(s) caja(s) de texto esta(n) vacia(s)", Toast.LENGTH_LONG).show();
+                    }
+                }
+                else {
+                    Toast.makeText(this,""+password.getText().toString() ,Toast.LENGTH_LONG).show();
+                }
+
+                break;
             case R.id.btn_registro_regresar:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
