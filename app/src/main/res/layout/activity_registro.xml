@@ -1,107 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#636262"
+    android:orientation="vertical"
     tools:context=".RegistroActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10sp"
-            android:layout_weight="2"
-            android:text="@string/text_usuario"
-            android:textColor="#FDFDFD"
-            android:textSize="22sp" />
-
-        <EditText
-            android:id="@+id/edit_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5sp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FAF9F9" />
+        android:layout_weight="2"
+        android:background="@drawable/border_radius"
+        android:orientation="vertical"
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btn_verPassword"
-                android:layout_width="10sp"
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight=".7"
-                app:backgroundTint="#E91E63"
-                app:cornerRadius="100sp"
+                android:layout_marginTop="20sp"
+                android:gravity="center"
+                android:text="@string/RegistroTitle"
+                android:textColor="#FFFFFF"
+                android:textSize="40sp" />
+        </LinearLayout>
 
-                app:icon="@drawable/password_show"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
-                app:iconGravity="textStart"
-                app:iconPadding="0dp" />
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_usuario"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/edit_password"
-                android:layout_width="wrap_content"
+                android:id="@+id/edit_user2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5sp"
-                android:layout_marginRight="10sp"
-                android:layout_weight="1"
+                android:layout_marginBottom="30sp"
                 android:ems="10"
-                android:inputType="textPassword"
+                android:inputType="textPersonName"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF" />
+                android:textColorHint="#FAF9F9" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_password"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/edit_user3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:layout_marginBottom="20sp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FAF9F9" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_password_again"
+                android:textColor="#FDFDFD"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/edit_user4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:layout_marginBottom="20sp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FAF9F9" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/btn_registrar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5sp"
-                android:layout_weight="1"
-                android:text="Datos incorrectos"
-                android:textColor="#DF6868" />
+                android:text="@string/btn_registrar"
+                app:backgroundTint="#68EC8E"
+                app:cornerRadius="50sp" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:layout_marginRight="5sp"
-                android:layout_weight="1"
-                android:gravity="bottom|center"
-                android:linksClickable="false"
-                android:text="¿Olvidaste tú contraseña?"
-                android:textColor="#F6F3F3" />
+            <Button
+                android:id="@+id/btn_regresar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_regresar"
+                app:backgroundTint="#E91E63"
+                app:cornerRadius="25sp" />
+
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10sp"
-            android:layout_weight="2"
-            android:text="@string/text_password"
-            android:textColor="#FDFDFD"
-            android:textSize="22sp" />
-
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
