@@ -57,7 +57,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                     }
                 }
                 else {
-                    Toast.makeText(this,""+password.getText().toString() ,Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"Procedimiento para el registro" ,Toast.LENGTH_LONG).show();
                 }
 
                 break;
