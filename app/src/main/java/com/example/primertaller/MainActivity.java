@@ -3,6 +3,7 @@ package com.example.primertaller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
@@ -25,7 +26,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    Button verPassword,ingresar;
+    Button verPassword,ingresar,registrar;
     EditText user,password;
     Boolean controlVerPassword = true;
     CheckBox check_recordar, check_terminos;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         verPassword = findViewById(R.id.btn_verPassword);
         ingresar = findViewById(R.id.btn_ingresar);
+        registrar = findViewById(R.id.btn_registrar_form);
         user = findViewById(R.id.edit_user);
         password = findViewById(R.id.edit_password);
         check_recordar = findViewById(R.id.check_recordar);
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         check_terminos.setOnClickListener(this);
         verPassword.setOnClickListener(this);
         ingresar.setOnClickListener(this);
-
+        registrar.setOnClickListener(this);
         ingresar.setEnabled(false);
         cargarPreferencias();
 
@@ -53,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.btn_registrar_form:
+                Intent intent = new Intent(this, RegistroActivity.class);
+                startActivity(intent);
+                break;
             case R.id.check_terminos:
                 if(check_terminos.isChecked()){
                     ingresar.setEnabled(true);

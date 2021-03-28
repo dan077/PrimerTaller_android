@@ -2,13 +2,68 @@ package com.example.primertaller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
-public class RegistroActivity extends AppCompatActivity {
-
+public class RegistroActivity extends AppCompatActivity implements View.OnClickListener {
+    Spinner sexo;
+    Button regresar,verPassword;
+    EditText password;
+    boolean controlVerPassword = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
+        sexo = findViewById(R.id.register_spinner_sexo);
+        regresar = findViewById(R.id.btn_registro_regresar);
+        verPassword = findViewById(R.id.btn_registro_verPass);
+        password = findViewById(R.id.register_password);
+        verPassword.setOnClickListener(this);
+        regresar.setOnClickListener(this);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.spinner_sexo, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        sexo.setAdapter(adapter);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_registro_regresar:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_registro_verPass:
+                if(controlVerPassword) {
+                    password.setInputType(InputType.TYPE_CLASS_TEXT);
+                    verPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.password_hide, 0, 0, 0);
+                    verPassword.setBackgroundColor(Color.rgb(104,236,142));
+
+                }
+                else {
+                    password.setInputType(InputType.TYPE_CLASS_TEXT |
+                            InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    verPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.password_show, 0);
+                    verPassword.setBackgroundColor(Color.RED);
+
+                }
+
+                //Posiciona el puntero en el ultimo caracter
+                password.setSelection(password.getText().length());
+
+                //Se cambia el estado de ver/no ver
+                controlVerPassword = !controlVerPassword;
+                break;
+        }
     }
 }
