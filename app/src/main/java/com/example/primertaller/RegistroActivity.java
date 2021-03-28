@@ -3,21 +3,29 @@ package com.example.primertaller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 public class RegistroActivity extends AppCompatActivity implements View.OnClickListener {
     Spinner sexo;
     Button regresar,verPassword,registrar;
     EditText password,correo,nombre,apellido;
     boolean controlVerPassword = true;
+    Funciones adminFunciones = new Funciones(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,20 +52,40 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+
+        switch (v.getId())
+        {
+
             case R.id.btn_registro_registrar:
-                if(password.getText().toString().isEmpty()|| password.toString().length() <= 6 || correo.getText().toString().isEmpty()|| nombre.getText().toString().isEmpty() ||
-                    apellido.getText().toString().isEmpty())
+                String _password = password.getText().toString();
+                String _correo = correo.getText().toString();
+                String _nombre = nombre.getText().toString();
+                String _apellido = apellido.getText().toString();
+                String _sexo = sexo.getSelectedItem().toString();
+                boolean checkCorreo = adminFunciones.checkEmail(_correo);
+
+                if(_password.isEmpty()|| _password.length() <= 6 || _correo.isEmpty()|| _nombre.isEmpty() ||
+                    _apellido.isEmpty() || checkCorreo)
                 {
                     if(password.getText().toString().length() <= 6) {
                         Toast.makeText(this, "La contraseña debe contener más de 6 caracteres", Toast.LENGTH_LONG).show();
+                    }
+                    else if(checkCorreo){
+                        Toast.makeText(this, "Lo sentimos, ya existe un usuario con ese correo.", Toast.LENGTH_LONG).show();
                     }
                     else{
                         Toast.makeText(this, "Alguna(s) caja(s) de texto esta(n) vacia(s)", Toast.LENGTH_LONG).show();
                     }
                 }
                 else {
-                    Toast.makeText(this,"Procedimiento para el registro" ,Toast.LENGTH_LONG).show();
+                    String nuevoUsuario = String.format("{\"correo\":\"%s\",\"pass\":\"%s\",\"nombre\":\"%s\",\"apellido\":\"%s\",\"sexo\":\"%s\"}",_correo,_password,_nombre,_apellido,_sexo);
+
+                    JsonParser parser = new JsonParser();
+                    JsonObject user = (JsonObject) parser.parse(nuevoUsuario);
+                    JsonArray gsonArr = parser.parse(adminFunciones.ObtenerUsuarios()).getAsJsonArray();
+                    gsonArr.add(user);
+                    adminFunciones.CreateUsuarios(gsonArr.toString());
+                    Toast.makeText(this,"Usuario Registrado",Toast.LENGTH_LONG).show();
                 }
 
                 break;
@@ -88,4 +116,6 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
+
+
 }

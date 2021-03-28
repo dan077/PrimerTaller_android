@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
@@ -15,7 +16,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.google.android.material.button.MaterialButton;
 
@@ -28,9 +31,12 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Button verPassword,ingresar,registrar;
     EditText user,password;
+    TextView txtError;
     Boolean controlVerPassword = true;
     CheckBox check_recordar, check_terminos;
     ArrayList<String> usuarios;
+    Funciones adminFunciones = new Funciones(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,13 +48,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         password = findViewById(R.id.edit_password);
         check_recordar = findViewById(R.id.check_recordar);
         check_terminos = findViewById(R.id.check_terminos);
+        txtError = findViewById(R.id.txt_login_error);
 
         check_terminos.setOnClickListener(this);
         verPassword.setOnClickListener(this);
         ingresar.setOnClickListener(this);
         registrar.setOnClickListener(this);
         ingresar.setEnabled(false);
-        cargarPreferencias();
+
+        adminFunciones.cargarPreferencias(user,password,check_recordar);
+        adminFunciones.CreateUsuarios();
+
+        txtError.setText("");
 
     }
 
@@ -92,13 +103,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_ingresar:
 
                 if(!user.getText().toString().isEmpty() && !password.getText().toString().isEmpty() ){
+                    String _user = user.getText().toString();
+                    String _pass = password.getText().toString();
                     if(check_recordar.isChecked())
                     {
-                        guardarPreferencias(true);
-                        Toast.makeText(this,"Guardado",Toast.LENGTH_LONG).show();
+                        adminFunciones.guardarPreferencias(true,_user,_pass,true);
+                        String valores = adminFunciones.IniciarSesion(_user,_pass);
+                        if(valores.equals("")){
+                            txtError.setText("Datos Invalidos");
+                        }
+                        else{
+                            txtError.setText("");
+                            Toast.makeText(this,"Bienvenido: " + valores,Toast.LENGTH_LONG).show();
+                        }
+
                     }
                     else{
-                        guardarPreferencias(false);
+                        adminFunciones.NoguardarPreferencias();
                         Toast.makeText(this,"No Guardado",Toast.LENGTH_LONG).show();
                     }
 
@@ -107,43 +128,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-   private void guardarPreferencias(Boolean seleccionado){
-       SharedPreferences preferences = getSharedPreferences("Credenciales",MODE_PRIVATE);
-       SharedPreferences.Editor edit = preferences.edit();
-       if(seleccionado)
-       {
-           edit.putString("user", user.getText().toString());
-           edit.putString("password", password.getText().toString());
-           edit.putBoolean("recordar", check_recordar.isChecked());
-       }
-       else{
-           //Borra el contenido de las preferencias.
-           edit.clear();
-       }
-       edit.commit();
-   }
-   private  void cargarPreferencias()
-   {
-       SharedPreferences preferences = getSharedPreferences("Credenciales",MODE_PRIVATE);
-       user.setText(preferences.getString("user",""));
-       password.setText(preferences.getString("password",""));
-       check_recordar.setChecked(preferences.getBoolean("recordar",false));
-   }
-
-    private  void Createusuarios(){
-
-
-        String userDefult = "[{\"usuario\":\"admin\",\"contraseña\":\"12345\"},{\"usuario\":\"admin2\",\"contraseña\":\"12345\"},{\"usuario\":\"admin3\",\"contraseña\":\"12345\"}]";
-
-        try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput("user.json", Context.MODE_PRIVATE));
-            outputStreamWriter.write(userDefult);
-            outputStreamWriter.close();
-        }
-        catch (IOException e) {
-
-        }
-    }
 
 
 }
