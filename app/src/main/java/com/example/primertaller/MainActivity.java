@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Button verPassword,ingresar,registrar;
     EditText user,password;
+    TextView olvidar;
     Boolean controlVerPassword = true;
     CheckBox check_recordar, check_terminos;
     ArrayList<String> usuarios;
@@ -42,12 +44,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         password = findViewById(R.id.edit_password);
         check_recordar = findViewById(R.id.check_recordar);
         check_terminos = findViewById(R.id.check_terminos);
+        olvidar = findViewById(R.id.txvolvidar);
 
         check_terminos.setOnClickListener(this);
         verPassword.setOnClickListener(this);
         ingresar.setOnClickListener(this);
         registrar.setOnClickListener(this);
         ingresar.setEnabled(false);
+        olvidar.setOnClickListener(this);
         cargarPreferencias();
 
     }
@@ -103,6 +107,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
 
                 }
+                break;
+            case R.id.txvolvidar:
+                Intent i  = new Intent(getApplicationContext(),ValidarCodigoActivity.class);
+                startActivity(i);
                 break;
         }
     }

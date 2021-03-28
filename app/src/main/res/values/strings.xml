@@ -12,6 +12,8 @@
     <string name="register_nombre">Nombre</string>
     <string name="register_apellido">Apellido</string>
     <string name="register_sexo">Sexo</string>
+    <string name="enviarcodigo">ENVIAR CÓDIGO</string>
+    <string name="validar">VALIDAR</string>
     <string-array name="spinner_sexo">
         <item>M</item>
         <item>F</item>
