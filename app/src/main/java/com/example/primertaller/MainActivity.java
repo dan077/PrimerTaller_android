@@ -31,7 +31,11 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Button verPassword,ingresar,registrar;
     EditText user,password;
+<<<<<<< HEAD
     TextView txtError;
+=======
+    TextView olvidar;
+>>>>>>> puello
     Boolean controlVerPassword = true;
     CheckBox check_recordar, check_terminos;
     ArrayList<String> usuarios;
@@ -48,18 +52,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         password = findViewById(R.id.edit_password);
         check_recordar = findViewById(R.id.check_recordar);
         check_terminos = findViewById(R.id.check_terminos);
+<<<<<<< HEAD
         txtError = findViewById(R.id.txt_login_error);
+=======
+        olvidar = findViewById(R.id.txvolvidar);
+>>>>>>> puello
 
         check_terminos.setOnClickListener(this);
         verPassword.setOnClickListener(this);
         ingresar.setOnClickListener(this);
         registrar.setOnClickListener(this);
         ingresar.setEnabled(false);
+<<<<<<< HEAD
 
         adminFunciones.cargarPreferencias(user,password,check_recordar);
         adminFunciones.CreateUsuarios();
 
         txtError.setText("");
+=======
+        olvidar.setOnClickListener(this);
+        cargarPreferencias();
+>>>>>>> puello
 
     }
 
@@ -124,6 +137,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
 
                 }
+                break;
+            case R.id.txvolvidar:
+                Intent i  = new Intent(getApplicationContext(),ValidarCodigoActivity.class);
+                startActivity(i);
                 break;
         }
     }
