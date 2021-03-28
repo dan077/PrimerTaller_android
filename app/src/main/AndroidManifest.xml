@@ -10,6 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PrimerTaller">
         <activity android:name=".RegistroActivity"></activity>
+        <activity android:name=".RestablecerActivity"></activity>
+        <activity android:name=".ValidarCodigoActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
