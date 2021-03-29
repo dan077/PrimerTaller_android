@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PrimerTaller">
-        <activity android:name=".RegistroActivity"></activity>
-        <activity android:name=".RestablecerActivity"></activity>
-        <activity android:name=".ValidarCodigoActivity"></activity>
+        <activity android:name=".TextoActivity"></activity>
+        <activity android:name=".RegistroActivity" />
+        <activity android:name=".RestablecerActivity" />
+        <activity android:name=".ValidarCodigoActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
