@@ -65,7 +65,6 @@ public class Funciones
             // Object of array
             JsonObject gsonObj = obj.getAsJsonObject();
             String correo = gsonObj.get("correo").getAsString();
-
             if(correo.equalsIgnoreCase(_correo)){
                 return true;
             }
@@ -110,6 +109,32 @@ public class Funciones
         }
 
         edit.commit();
+    }
+
+    public boolean SetPassword(String _correo, String contraseña){
+        int cont = 0;
+        String usuarios = ObtenerUsuarios();
+
+        JsonParser parser = new JsonParser();
+        JsonArray gsonArr = parser.parse(usuarios).getAsJsonArray();
+
+        for (JsonElement obj : gsonArr) {
+            // Object of array
+            JsonObject gsonObj = obj.getAsJsonObject();
+            String correo = gsonObj.get("correo").getAsString();
+            if(correo.equalsIgnoreCase(_correo)){
+                String _apellido = gsonObj.get("apellido").getAsString();
+                String _sexo = gsonObj.get("sexo").getAsString();
+                String _nombre = gsonObj.get("nombre").getAsString();
+                String nuevoUsuario = String.format("{\"correo\":\"%s\",\"pass\":\"%s\",\"nombre\":\"%s\",\"apellido\":\"%s\",\"sexo\":\"%s\"}",_correo,contraseña,_nombre,_apellido,_sexo);
+                JsonObject user = (JsonObject) parser.parse(nuevoUsuario);
+                gsonArr.set(cont, user);
+                CreateUsuarios(gsonArr.toString());
+                return true;
+            }
+            cont ++;
+        }
+        return false;
     }
 
 }

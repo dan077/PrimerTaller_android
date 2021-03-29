@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Boolean controlVerPassword = true;
     CheckBox check_recordar, check_terminos;
     ArrayList<String> usuarios;
-    Funciones adminFunciones = new Funciones(this);
+    Funciones adminFunciones = new Funciones(this); //Crear un objeto de función
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

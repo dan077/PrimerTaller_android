@@ -53,7 +53,7 @@
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/edtcorreoveri"
+                android:id="@+id/edtnewpassword"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:ems="10"
@@ -61,7 +61,7 @@
                 android:textColor="#FFFFFF" />
 
             <TextView
-                android:id="@+id/txvcode"
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
@@ -97,7 +97,7 @@
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/edtcodigo"
+                android:id="@+id/edtrepeatpassword"
                 android:layout_width="match_parent"
                 android:layout_height="73dp"
                 android:ems="10"
@@ -105,7 +105,7 @@
                 android:textColor="#FFFFFF" />
 
             <Button
-                android:id="@+id/btnvalidar"
+                android:id="@+id/btnrestablecer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
