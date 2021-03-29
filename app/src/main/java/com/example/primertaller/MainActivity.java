@@ -123,6 +123,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     else{
                         txtError.setText("");
                         Toast.makeText(this,"Bienvenido: " + valores,Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(this,HomeActivity.class);
+                        startActivity(i);
                     }
 
 

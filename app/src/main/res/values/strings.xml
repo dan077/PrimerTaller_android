@@ -18,6 +18,10 @@
     <string name="subrayada">SUBRAYADA</string>
     <string name="italica">ITALICA</string>
     <string name="negrita">NEGRITA</string>
+    <string name="FISICA">FISICA</string>
+    <string name="VELOCIDAD">VELOCIDAD</string>
+    <string name="FUERZA">FUERZA</string>
+    <string name="VOLTAJE">VOLTAJE</string>
     <string-array name="spinner_sexo">
         <item>M</item>
         <item>F</item>
