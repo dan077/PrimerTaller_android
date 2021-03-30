@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class RestablecerActivity extends AppCompatActivity implements View.OnClickListener {
     String correo, aux1,aux2;
@@ -22,9 +21,9 @@ public class RestablecerActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restablecer);
 
-        newcontraseña = findViewById(R.id.edtnewpassword);
-        repcontraseña = findViewById(R.id.edtrepeatpassword);
-        restablecer = findViewById(R.id.btnrestablecer);
+        newcontraseña = findViewById(R.id.edtmasa);
+        repcontraseña = findViewById(R.id.edtaceleracion);
+        restablecer = findViewById(R.id.btnhallarfuerza);
 
         Intent i = getIntent();
         correo = i.getStringExtra("correo");
@@ -34,7 +33,7 @@ public class RestablecerActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btnrestablecer:
+            case R.id.btnhallarfuerza:
 
                 if (!newcontraseña.getText().toString().trim().isEmpty() && !repcontraseña.getText().toString().trim().isEmpty()){
                     aux1 = newcontraseña.getText().toString();
