@@ -53,7 +53,7 @@
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/edtmasa"
+                android:id="@+id/edtcorreo"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:ems="10"
@@ -97,7 +97,7 @@
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/edtaceleracion"
+                android:id="@+id/edtcodigo"
                 android:layout_width="match_parent"
                 android:layout_height="73dp"
                 android:ems="10"
@@ -105,7 +105,7 @@
                 android:textColor="#FFFFFF" />
 
             <Button
-                android:id="@+id/btnhallarfuerza"
+                android:id="@+id/btnvalidar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"

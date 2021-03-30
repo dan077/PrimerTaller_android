@@ -21,9 +21,9 @@ public class RestablecerActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restablecer);
 
-        newcontraseña = findViewById(R.id.edtmasa);
-        repcontraseña = findViewById(R.id.edtaceleracion);
-        restablecer = findViewById(R.id.btnhallarfuerza);
+        newcontraseña = findViewById(R.id.edtnewcontrasena);
+        repcontraseña = findViewById(R.id.edtrepcontrasena);
+        restablecer = findViewById(R.id.btnrestablecer);
 
         Intent i = getIntent();
         correo = i.getStringExtra("correo");
@@ -33,7 +33,7 @@ public class RestablecerActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btnhallarfuerza:
+            case R.id.btnrestablecer:
 
                 if (!newcontraseña.getText().toString().trim().isEmpty() && !repcontraseña.getText().toString().trim().isEmpty()){
                     aux1 = newcontraseña.getText().toString();

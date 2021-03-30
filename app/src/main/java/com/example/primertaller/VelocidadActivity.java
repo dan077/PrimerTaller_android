@@ -18,9 +18,9 @@ public class VelocidadActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_velocidad);
 
-        hallar = findViewById(R.id.btnhallarfuerza);
-        distancia = findViewById(R.id.edtmasa);
-        tiempo = findViewById(R.id.edtaceleracion);
+        hallar = findViewById(R.id.btnhallarvelocidad);
+        distancia = findViewById(R.id.edtdistancia);
+        tiempo = findViewById(R.id.edttiempo);
 
         hallar.setOnClickListener(this);
     }
@@ -28,7 +28,7 @@ public class VelocidadActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btnhallarfuerza:
+            case R.id.btnhallarvelocidad:
                 if (!distancia.getText().toString().isEmpty() && !tiempo.getText().toString().isEmpty()){
                     dist = Float.valueOf(distancia.getText().toString());
                     time = Float.valueOf(tiempo.getText().toString());

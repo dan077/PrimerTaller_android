@@ -24,10 +24,10 @@ public class ValidarCodigoActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_validar_codigo);
-        codigo = findViewById(R.id.edtaceleracion);
+        codigo = findViewById(R.id.edtcodigo);
         envcodigo = findViewById(R.id.btnenviarcodigo);
-        validar = findViewById(R.id.btnhallarfuerza);
-        correo = findViewById(R.id.edtmasa);
+        validar = findViewById(R.id.btnvalidar);
+        correo = findViewById(R.id.edtcorreo);
         txgenerado = findViewById(R.id.textView);
 
         envcodigo.setOnClickListener(this);
@@ -64,7 +64,7 @@ public class ValidarCodigoActivity extends AppCompatActivity implements View.OnC
                             .setPositiveButton(android.R.string.yes, null).show();
                 }
                 break;
-            case R.id.btnhallarfuerza:
+            case R.id.btnvalidar:
                 if (!codigo.getText().toString().isEmpty()){
                     int numero = Integer.parseInt(codigo.getText().toString());
                     if (numero == dig5){

@@ -24,8 +24,15 @@
     <string name="voltaje">VOLTAJE</string>
     <string name="hallar">HALLAR</string>
     <string name="hallarfuerza">HALLAR FUERZA</string>
+    <string name="calcular">CALCULAR</string>
     <string-array name="spinner_sexo">
         <item>M</item>
         <item>F</item>
+    </string-array>
+
+    <string-array name="spinner_geometria">
+        <item>ubicación en cuadrantes</item>
+        <item>Pendiente</item>
+        <item>Distancia</item>
     </string-array>
 </resources>
