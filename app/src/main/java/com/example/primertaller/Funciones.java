@@ -58,7 +58,7 @@ public class Funciones
             if(correo.equalsIgnoreCase(_correo) && password.equals(_password))
             {
                 guardarPreferencias(_correo,password,check);
-
+                ActiveSesion();
                 Intent i = new Intent(pref,HomeActivity.class);
                 i.putExtra("obj",obj.toString());
                 pref.startActivity(i);
@@ -96,6 +96,14 @@ public class Funciones
         boolean status = preferences.getBoolean("sesion",false);
         return  status;
     }
+
+    public void ActiveSesion(){
+        SharedPreferences preferences = pref.getSharedPreferences("Credenciales",MODE_PRIVATE);
+        SharedPreferences.Editor edit = preferences.edit();
+        edit.putBoolean("sesion", true);
+        edit.commit();
+    }
+
     public void guardarPreferencias(String user, String pass,boolean check){
         SharedPreferences preferences = pref.getSharedPreferences("Credenciales",MODE_PRIVATE);
         SharedPreferences.Editor edit = preferences.edit();
@@ -104,7 +112,6 @@ public class Funciones
         edit.putString("user", user);
         edit.putString("password", pass);
         edit.putBoolean("recordar", check);
-        edit.putBoolean("sesion", true);
         edit.commit();
     }
 
