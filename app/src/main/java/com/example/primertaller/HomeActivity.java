@@ -9,37 +9,38 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
-    Button fisica,velocidad,voltaje,fuerza;
+    Button fisica,geometria,texto;
     ImageButton ayuda, home, exit;
     AlertDialog.Builder builder, help;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
          fisica = findViewById(R.id.btnfisica);
-         velocidad = findViewById(R.id.btnvelocidad);
-         voltaje = findViewById(R.id.btnvoltaje);
-         fuerza = findViewById(R.id.btnfuerza);
+         geometria = findViewById(R.id.btngeometria);
+         texto = findViewById(R.id.btntexto);
          ayuda = (ImageButton) findViewById(R.id.imgbtnayuda);
          home = (ImageButton) findViewById(R.id.imgbtnhome);
          exit = (ImageButton) findViewById(R.id.imgbtnexit);
 
 
+
          fisica.setOnClickListener(this);
-         velocidad.setOnClickListener(this);
-         voltaje.setOnClickListener(this);
-         fuerza.setOnClickListener(this);
+         geometria.setOnClickListener(this);
+         texto.setOnClickListener(this);
          ayuda.setOnClickListener(this);
          home.setOnClickListener(this);
          exit.setOnClickListener(this);
 
          help = new AlertDialog.Builder(this);
          help.setTitle("ayuda");
-         help.setMessage("APP v1, realizada por DANIEL VEDA, LUIS PUELLO, ANDRES CASTRO");
+         help.setMessage("APP v1, realizada por DANIEL VEGA, LUIS PUELLO, ANDRES CASTRO");
          help.setPositiveButton("Ok", null);
 
         builder = new AlertDialog.Builder(this);
@@ -60,6 +61,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        Intent i;
+
         switch (v.getId()){
             case R.id.imgbtnexit:
                 AlertDialog dialog = builder.create();
@@ -71,6 +74,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.imgbtnhome:
                 Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_LONG).show();
+                break;
+            case R.id.btnfisica:
+                i = new Intent(this,FisicaActivity.class);
+                startActivity(i);
+                break;
+            case R.id.btngeometria:
+                i = new Intent(this,GeometriaActivity.class);
+                startActivity(i);
+                break;
+
+            case R.id.btntexto:
+                i = new Intent(this,TextoActivity.class);
+                startActivity(i);
                 break;
 
         }

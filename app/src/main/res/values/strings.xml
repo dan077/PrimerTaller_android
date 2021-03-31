@@ -29,6 +29,11 @@
     <string name="VELOCIDAD">VELOCIDAD</string>
     <string name="FUERZA">FUERZA</string>
     <string name="VOLTAJE">VOLTAJE</string>
+    <string name="TEXTO">TEXTO</string>
+    <string name="GEOMETRIA">GEOMETRIA</string>
+    <string name="HALLAR_VOLTAJE">HALLAR VOLTAJE</string>
+    <string name="BIENVENIDO">BIENVENIDO</string>
+
     <string-array name="spinner_sexo">
         <item>M</item>
         <item>F</item>
@@ -38,5 +43,10 @@
         <item>ubicación en cuadrantes</item>
         <item>Pendiente</item>
         <item>Distancia</item>
+    </string-array>
+    <string-array name="spinner">
+        <item>2</item>
+        <item>3</item>
+
     </string-array>
 </resources>

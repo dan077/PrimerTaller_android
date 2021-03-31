@@ -31,7 +31,7 @@ public class GeometriaActivity extends AppCompatActivity implements AdapterView.
         coory1 = findViewById(R.id.edtcoory1);
         coorx2 = findViewById(R.id.edtcoorx2);
         coory2 = findViewById(R.id.edtcoory2);
-        calcular = findViewById(R.id.btnhallarfuerza);
+        calcular = findViewById(R.id.btncalcular);
         spinner = findViewById(R.id.spinnergeometria);
 
 
@@ -58,7 +58,7 @@ public class GeometriaActivity extends AppCompatActivity implements AdapterView.
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btnhallarfuerza:
+            case R.id.btncalcular:
                 if (!coorx1.getText().toString().isEmpty() && !coory1.getText().toString().isEmpty() &&
                     !coorx2.getText().toString().isEmpty() && !coory2.getText().toString().isEmpty()){
                     x1 = Float.valueOf(coorx1.getText().toString());

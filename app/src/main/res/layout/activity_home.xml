@@ -5,6 +5,7 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#606060"
     android:orientation="vertical"
     tools:context=".HomeActivity">
 
@@ -12,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1.5"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,17 +31,20 @@
                 android:id="@+id/btnfisica"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="20sp"
                 android:layout_weight="1"
                 android:text="@string/FISICA"
                 app:cornerRadius="50sp" />
 
             <Button
-                android:id="@+id/btnvelocidad"
+                android:id="@+id/btngeometria"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="20sp"
                 android:layout_weight="1"
-                android:text="@string/VELOCIDAD"
+                android:text="@string/GEOMETRIA"
                 app:cornerRadius="50sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -50,19 +54,12 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnfuerza"
+                android:id="@+id/btntexto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15sp"
                 android:layout_weight="1"
-                android:text="@string/FUERZA"
-                app:cornerRadius="50sp" />
-
-            <Button
-                android:id="@+id/btnvoltaje"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/VOLTAJE"
+                android:text="@string/TEXTO"
                 app:cornerRadius="50sp" />
         </LinearLayout>
 
@@ -71,13 +68,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.6">
+        android:layout_weight="1.6"
+        android:background="#FFFFFF">
 
         <ImageButton
             android:id="@+id/imgbtnayuda"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="#FFFFFF"
             app:srcCompat="@drawable/ic_baseline_help_24" />
 
         <ImageButton
@@ -85,6 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="#FFFFFF"
             app:srcCompat="@drawable/ic_baseline_home_24" />
 
         <ImageButton
@@ -92,6 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="#FFFFFF"
             app:srcCompat="@drawable/ic_baseline_exit_to_app_24" />
     </LinearLayout>
 
