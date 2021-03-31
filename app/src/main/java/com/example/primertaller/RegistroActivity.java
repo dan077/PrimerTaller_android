@@ -1,7 +1,9 @@
 package com.example.primertaller;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -63,29 +65,64 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                 String _apellido = apellido.getText().toString();
                 String _sexo = sexo.getSelectedItem().toString();
                 boolean checkCorreo = adminFunciones.checkEmail(_correo);
+                boolean validEmail = !adminFunciones.isValidEmail(_correo);
 
-                if(_password.isEmpty()|| _password.length() <= 6 || _correo.isEmpty()|| _nombre.isEmpty() ||
+                if(_password.isEmpty()|| _password.length() <= 6 || validEmail || _nombre.isEmpty() ||
                     _apellido.isEmpty() || checkCorreo)
                 {
-                    if(password.getText().toString().length() <= 6) {
-                        Toast.makeText(this, "La contraseña debe contener más de 6 caracteres", Toast.LENGTH_LONG).show();
+                    // *** validaciones. ***
+                    // no valido el sexo por que siempre va a seleccionar alguno de los dos.
+
+                    if(_nombre.isEmpty()){
+                        nombre.setError("Caja vacia");
+                    }
+
+                    if(_apellido.isEmpty()){
+                        apellido.setError("Caja vacia");
+                    }
+
+                    //Validaciones password
+                    if (_password.isEmpty()){
+                        password.setError("Caja vacia");
+                    }
+                    else if(_password.length() <= 6) {
+                        password.setError("La contraseña debe contener más de 6 caracteres");
+                    }
+
+                    //validaciones correo.
+                    if(_correo.isEmpty()){
+                       correo.setError("Caja vacia");
                     }
                     else if(checkCorreo){
-                        Toast.makeText(this, "Lo sentimos, ya existe un usuario con ese correo.", Toast.LENGTH_LONG).show();
+                        correo.setError("ya existe un usuario con ese correo");
                     }
-                    else{
-                        Toast.makeText(this, "Alguna(s) caja(s) de texto esta(n) vacia(s)", Toast.LENGTH_LONG).show();
+                    else if(validEmail){
+                        correo.setError("Email no valido.");
                     }
+
                 }
                 else {
+
                     String nuevoUsuario = String.format("{\"correo\":\"%s\",\"pass\":\"%s\",\"nombre\":\"%s\",\"apellido\":\"%s\",\"sexo\":\"%s\"}",_correo,_password,_nombre,_apellido,_sexo);
 
                     JsonParser parser = new JsonParser();
                     JsonObject user = (JsonObject) parser.parse(nuevoUsuario);
                     JsonArray gsonArr = parser.parse(adminFunciones.ObtenerUsuarios()).getAsJsonArray();
                     gsonArr.add(user);
+
                     adminFunciones.CreateUsuarios(gsonArr.toString());
                     Toast.makeText(this,"Usuario Registrado",Toast.LENGTH_LONG).show();
+                    new AlertDialog.Builder(this)
+                            .setTitle("Registrado con exito")
+                            .setMessage("será redirigido a la pantalla de login.")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(i);
+                                }
+                            }).show();
+
                 }
 
                 break;
@@ -116,6 +153,6 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
-
+    @Override public void onBackPressed() { return; }
 
 }

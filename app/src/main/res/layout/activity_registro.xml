@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5sp"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textWebEmailAddress"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FAF9F9" />
 

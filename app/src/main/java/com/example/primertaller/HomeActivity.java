@@ -16,7 +16,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     Button fisica,geometria,texto;
     ImageButton ayuda, home, exit;
     AlertDialog.Builder builder, help;
-
+    Funciones adminFunciones = new Funciones(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +51,16 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getApplicationContext(),"saliendo",Toast.LENGTH_LONG).show();
-                finish();
+                adminFunciones.CerrarSesion();
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
             }
         });
 
         builder.setNegativeButton("Cancelar", null);
 
     }
+
 
     @Override
     public void onClick(View v) {
@@ -91,4 +94,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+
+    @Override public void onBackPressed() { return; }
+
 }

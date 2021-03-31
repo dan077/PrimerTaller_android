@@ -1,7 +1,9 @@
 package com.example.primertaller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
@@ -18,6 +20,12 @@ public class Funciones
     public Funciones(Context _pref){
         pref = _pref;
     }
+
+    public final static boolean isValidEmail(String target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
+
     public  void CreateUsuarios(String usuarios)
     {
         SharedPreferences preferences =   pref.getSharedPreferences("usuarios", MODE_PRIVATE);
@@ -29,12 +37,13 @@ public class Funciones
         }
         edit.commit();
     }
+
     public  String ObtenerUsuarios(){
         SharedPreferences preferences = pref.getSharedPreferences("usuarios", MODE_PRIVATE);
         return preferences.getString("users","");
     }
 
-    public String IniciarSesion(String _correo, String _password){
+    public boolean IniciarSesion(String _correo, String _password, boolean check){
         String usuarios = ObtenerUsuarios();
 
         JsonParser parser = new JsonParser();
@@ -46,16 +55,25 @@ public class Funciones
             String correo = gsonObj.get("correo").getAsString();
             String password = gsonObj.get("pass").getAsString();
 
-            if(correo.equalsIgnoreCase(_correo) && password.equals(_password)){
-                return obj.toString();
+            if(correo.equalsIgnoreCase(_correo) && password.equals(_password))
+            {
+                guardarPreferencias(_correo,password,check);
+
+                Intent i = new Intent(pref,HomeActivity.class);
+                i.putExtra("obj",obj.toString());
+                pref.startActivity(i);
+                return true;
             }
 
         }
-        return  "";
+        return  false;
     }
 
     public Boolean checkEmail(String _correo)
     {
+        if(_correo.isEmpty()){
+            return  false;
+        }
         String usuarios = ObtenerUsuarios();
 
         JsonParser parser = new JsonParser();
@@ -72,25 +90,37 @@ public class Funciones
         }
         return false;
     }
-    public void guardarPreferencias(Boolean seleccionado,String user, String pass, Boolean check){
+
+    public  boolean isActiveSesion(){
+        SharedPreferences preferences = pref.getSharedPreferences("Credenciales",MODE_PRIVATE);
+        boolean status = preferences.getBoolean("sesion",false);
+        return  status;
+    }
+    public void guardarPreferencias(String user, String pass,boolean check){
         SharedPreferences preferences = pref.getSharedPreferences("Credenciales",MODE_PRIVATE);
         SharedPreferences.Editor edit = preferences.edit();
 
-            edit.putString("user", user);
-            edit.putString("password", pass);
-            edit.putBoolean("recordar", check);
-
+        //Como va a iniciar sesion no puedo borrar estos datos.
+        edit.putString("user", user);
+        edit.putString("password", pass);
+        edit.putBoolean("recordar", check);
+        edit.putBoolean("sesion", true);
         edit.commit();
     }
 
-    public void NoguardarPreferencias(){
+    public void CerrarSesion(){
         SharedPreferences preferences = pref.getSharedPreferences("Credenciales",MODE_PRIVATE);
         SharedPreferences.Editor edit = preferences.edit();
-            //Borra el contenido de las preferencias.
-            edit.clear();
+
+            //Borra el contenido de las preferencias si no se seleccionó previamente el check de recordar.
+        if(!preferences.getBoolean("recordar",false)){
+           edit.clear();
+        }
+        edit.putBoolean("sesion", false);
         edit.commit();
     }
-    public   void cargarPreferencias(EditText user, EditText password, CheckBox check_recordar)
+
+    public void cargarPreferencias(EditText user, EditText password, CheckBox check_recordar)
     {
         SharedPreferences preferences = pref.getSharedPreferences("Credenciales",MODE_PRIVATE);
         user.setText(preferences.getString("user",""));
@@ -103,10 +133,11 @@ public class Funciones
         SharedPreferences preferences = pref.getSharedPreferences("usuarios", MODE_PRIVATE);
         SharedPreferences.Editor edit = preferences.edit();
         String getUsuarios= preferences.getString("users", null);
+
         //Crea los usuarios predeterminados si no existen.
-        if(getUsuarios == null) {
-            edit.putString("users", "[{\"correo\":\"admin@gmail.com\",\"pass\":\"12345\",\"nombre\":\"daniel\",\"apellido\":\"vega\",\"sexo\":\"M\"},{\"correo\":\"admin123@gmail.com\",\"pass\":\"12345\",\"nombre\":\"andres\",\"apellido\":\"felizzola\",\"sexo\":\"F\"}]");
-        }
+        if(getUsuarios == null)
+            edit.putString("users", "[{\"correo\":\"admin@gmail.com\",\"pass\":\"1234567\",\"nombre\":\"daniel\",\"apellido\":\"vega\",\"sexo\":\"M\"},{\"correo\":\"admin123@gmail.com\",\"pass\":\"1234567\",\"nombre\":\"andres\",\"apellido\":\"felizzola\",\"sexo\":\"F\"},{\"correo\":\"sara@gmail.com\",\"pass\":\"1234567\",\"nombre\":\"andres\",\"apellido\":\"felizzola\",\"sexo\":\"F\"}]");
+
 
         edit.commit();
     }

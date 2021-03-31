@@ -56,18 +56,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ingresar.setOnClickListener(this);
         registrar.setOnClickListener(this);
         ingresar.setEnabled(false);
-        adminFunciones.cargarPreferencias(user,password,check_recordar);
-        adminFunciones.CreateUsuarios();
         txtError.setText("");
         olvidar.setOnClickListener(this);
+
         adminFunciones.cargarPreferencias(user,password,check_recordar);
+        adminFunciones.CreateUsuarios();
+        adminFunciones.cargarPreferencias(user,password,check_recordar);
+
+        if(adminFunciones.isActiveSesion()){
+            adminFunciones.IniciarSesion(user.getText().toString() , password.getText().toString() , check_recordar.isChecked());
+        }
+
+
 
     }
 
     @Override
     public void onClick(View v) {
+        String _user = user.getText().toString();
+        String _pass = password.getText().toString();
         switch (v.getId()){
             case R.id.btn_registrar_form:
+                adminFunciones.guardarPreferencias(_user,_pass,check_recordar.isChecked());
                 Intent intent = new Intent(this, RegistroActivity.class);
                 startActivity(intent);
                 break;
@@ -103,32 +113,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_ingresar:
 
-                if(!user.getText().toString().isEmpty() && !password.getText().toString().isEmpty() ){
-                    String _user = user.getText().toString();
-                    String _pass = password.getText().toString();
-                    String valores = adminFunciones.IniciarSesion(_user,_pass);
 
-                    if(check_recordar.isChecked())
-                    {
-                        adminFunciones.guardarPreferencias(true,_user,_pass,true);
-                    }
-                    else{
-                        adminFunciones.NoguardarPreferencias();
-                        Toast.makeText(this,"No Guardado",Toast.LENGTH_LONG).show();
-                    }
+                if(!adminFunciones.isValidEmail(_user)) //en la funcion se verifica que no esté vacio.
+                {
+                    user.setError("Email no valido");
+                }
+                else if(_pass.isEmpty()){
+                    password.setError("Campo vacio");
+                }
+                else{
+                        boolean valores = adminFunciones.IniciarSesion(_user,_pass,check_recordar.isChecked());
 
-                    if(valores.equals("")){
-                        txtError.setText("Datos Invalidos");
-                    }
-                    else{
-                        txtError.setText("");
-                        Toast.makeText(this,"Bienvenido: " + valores,Toast.LENGTH_LONG).show();
-                        Intent i = new Intent(this,HomeActivity.class);
-                        startActivity(i);
-                    }
-
-
-
+                        if(!valores){
+                            txtError.setText("Datos Invalidos");
+                        }
                 }
                 break;
             case R.id.txvolvidar:
@@ -138,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override public void onBackPressed() { return; }
 
 
 }
