@@ -13,6 +13,7 @@
         <activity android:name=".FuerzaActivity" />
         <activity android:name=".VelocidadActivity" />
         <activity android:name=".FisicaActivity" />
+        <activity android:name=".HomeActivity"></activity>
         <activity android:name=".TextoActivity" />
         <activity android:name=".RegistroActivity" />
         <activity android:name=".RestablecerActivity" />

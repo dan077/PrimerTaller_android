@@ -25,6 +25,10 @@
     <string name="hallar">HALLAR</string>
     <string name="hallarfuerza">HALLAR FUERZA</string>
     <string name="calcular">CALCULAR</string>
+    <string name="FISICA">FISICA</string>
+    <string name="VELOCIDAD">VELOCIDAD</string>
+    <string name="FUERZA">FUERZA</string>
+    <string name="VOLTAJE">VOLTAJE</string>
     <string-array name="spinner_sexo">
         <item>M</item>
         <item>F</item>
