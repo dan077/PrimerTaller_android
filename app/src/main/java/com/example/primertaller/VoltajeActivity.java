@@ -22,7 +22,7 @@ public class VoltajeActivity extends AppCompatActivity implements View.OnClickLi
     EditText resistencia3, resistencia2, resistencia1, corriente;
     CheckBox check_paralelo;
     AlertDialog.Builder builder;
-    int res,res1,res2,res3,v1,v2,v3;
+    float res,res1,res2,res3,v1,v2,v3;
     float rest, corriente1,vt;
     ImageButton ayuda, home, exit;
     Funciones adminFunciones = new Funciones(this);
@@ -71,68 +71,85 @@ public class VoltajeActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         adminFunciones.menuHomeAccion(ayuda,home,exit,v);
+        String resistencia_1, resistencia_2, resistencia_3, corriente_1;
+        resistencia_1 = resistencia1.getText().toString();
+        resistencia_2 = resistencia2.getText().toString();
+        resistencia_3 = resistencia3.getText().toString();
+        corriente_1 = corriente.getText().toString();
 
         switch (v.getId()){
             case R.id.btnhallarvoltaje:
-                corriente1 = Float.valueOf(corriente.getText().toString());
+
                 //Toast.makeText(getApplicationContext(),""+corriente1,Toast.LENGTH_LONG).show();
+
                 if(check_paralelo.isChecked()){
                     if (res ==2){
-                        res1 = Integer.valueOf(resistencia1.getText().toString());
-                        res2 = Integer.valueOf(resistencia2.getText().toString());
-                        rest = (res1*res2)/(res1+res2);
-                        vt = rest * corriente1;
+                        if (!(resistencia_1.isEmpty() || resistencia_2.isEmpty() || corriente_1.isEmpty())) {
+                            corriente1 = Float.valueOf(corriente.getText().toString());
+                            res1 = Integer.valueOf(resistencia1.getText().toString());
+                            res2 = Integer.valueOf(resistencia2.getText().toString());
+                            rest = (res1 * res2) / (res1 + res2);
+                            vt = rest * corriente1;
 
-                        builder = new AlertDialog.Builder(this);
-                        builder.setTitle("VOLTAJE");
-                        builder.setMessage("El voltaje es: "+ vt);
-                        builder.setPositiveButton("Aceptar", null);
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-
+                            builder = new AlertDialog.Builder(this);
+                            builder.setTitle("VOLTAJE");
+                            builder.setMessage("El voltaje es: " + vt + "V");
+                            builder.setPositiveButton("Aceptar", null);
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                        }
 
 
                     }else{
-                        res1 = Integer.valueOf(resistencia1.getText().toString());
-                        res2 = Integer.valueOf(resistencia2.getText().toString());
-                        res3 = Integer.valueOf(resistencia3.getText().toString());
-                        rest = ((res1*res2*res3)/((res2*res3)+(res1*res3)+(res1*res2)));
-                        vt = rest * corriente1;
+                        if (!(resistencia_1.isEmpty() || resistencia_2.isEmpty() || resistencia_3.isEmpty() || corriente_1.isEmpty())) {
+                            corriente1 = Float.valueOf(corriente.getText().toString());
+                            res1 = Integer.valueOf(resistencia1.getText().toString());
+                            res2 = Integer.valueOf(resistencia2.getText().toString());
+                            res3 = Integer.valueOf(resistencia3.getText().toString());
+                            rest = ((res1 * res2 * res3) / ((res2 * res3) + (res1 * res3) + (res1 * res2)));
+                            //Toast.makeText(getApplicationContext(),"valor de resistencia"+ rest,Toast.LENGTH_LONG).show();
+                            vt = rest * corriente1;
 
-                        builder = new AlertDialog.Builder(this);
-                        builder.setTitle("VOLTAJE");
-                        builder.setMessage("El voltaje es: "+ vt);
-                        builder.setPositiveButton("Aceptar", null);
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
+                            builder = new AlertDialog.Builder(this);
+                            builder.setTitle("VOLTAJE");
+                            builder.setMessage("El voltaje es: " + vt + "V");
+                            builder.setPositiveButton("Aceptar", null);
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                        }
                     }
                 }else{
                     if (res == 2){
-                        res1 = Integer.valueOf(resistencia1.getText().toString());
-                        res2 = Integer.valueOf(resistencia2.getText().toString());
-                        rest = res1+ res2;
-                        vt = rest * corriente1;
+                        if (!(resistencia_1.isEmpty() || resistencia_2.isEmpty() || corriente_1.isEmpty())) {
+                            corriente1 = Float.valueOf(corriente.getText().toString());
+                            res1 = Integer.valueOf(resistencia1.getText().toString());
+                            res2 = Integer.valueOf(resistencia2.getText().toString());
+                            rest = res1 + res2;
+                            vt = rest * corriente1;
 
-                        builder = new AlertDialog.Builder(this);
-                        builder.setTitle("VOLTAJE");
-                        builder.setMessage("El voltaje es: "+ vt);
-                        builder.setPositiveButton("Aceptar", null);
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-
+                            builder = new AlertDialog.Builder(this);
+                            builder.setTitle("VOLTAJE");
+                            builder.setMessage("El voltaje es: " + vt + "V");
+                            builder.setPositiveButton("Aceptar", null);
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                        }
                     }else{
-                        res1 = Integer.valueOf(resistencia1.getText().toString());
-                        res2 = Integer.valueOf(resistencia2.getText().toString());
-                        res3 = Integer.valueOf(resistencia3.getText().toString());
-                        rest = res1+ res2 +res3;
-                        vt = rest * corriente1;
+                        if (!(resistencia_1.isEmpty() || resistencia_2.isEmpty() || resistencia_3.isEmpty() || corriente_1.isEmpty())) {
+                            corriente1 = Float.valueOf(corriente.getText().toString());
+                            res1 = Integer.valueOf(resistencia1.getText().toString());
+                            res2 = Integer.valueOf(resistencia2.getText().toString());
+                            res3 = Integer.valueOf(resistencia3.getText().toString());
+                            rest = res1 + res2 + res3;
+                            vt = rest * corriente1;
 
-                        builder = new AlertDialog.Builder(this);
-                        builder.setTitle("VOLTAJE");
-                        builder.setMessage("El voltaje es: "+ vt);
-                        builder.setPositiveButton("Aceptar", null);
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
+                            builder = new AlertDialog.Builder(this);
+                            builder.setTitle("VOLTAJE");
+                            builder.setMessage("El voltaje es: " + vt + "V");
+                            builder.setPositiveButton("Aceptar", null);
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                        }
                     }
 
 
