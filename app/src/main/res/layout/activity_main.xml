@@ -37,8 +37,8 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/iniciar_sesion"
-                tools:srcCompat="@drawable/iniciar_sesion" />
+                app:srcCompat="@drawable/batman_hero_avatar_comics_512"
+                tools:srcCompat="@drawable/batman_hero_avatar_comics_512" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout

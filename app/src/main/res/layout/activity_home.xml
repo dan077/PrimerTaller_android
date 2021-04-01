@@ -28,7 +28,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginBottom="20sp"
         android:layout_weight="0.6"
+        android:background="@drawable/border_radius"
         android:orientation="vertical">
 
         <LinearLayout
@@ -44,6 +48,10 @@
                 android:layout_margin="20sp"
                 android:layout_weight="1"
                 android:text="@string/FISICA"
+
+                android:textColor="#070000"
+
+                app:backgroundTint="#6DBBAA"
                 app:cornerRadius="50sp" />
 
             <Button
@@ -52,7 +60,11 @@
                 android:layout_height="match_parent"
                 android:layout_margin="20sp"
                 android:layout_weight="1"
+
                 android:text="@string/GEOMETRIA"
+                android:textColor="#000000"
+
+                app:backgroundTint="#F8AD08"
                 app:cornerRadius="50sp" />
 
         </LinearLayout>
@@ -70,6 +82,8 @@
                 android:layout_margin="15sp"
                 android:layout_weight="1"
                 android:text="@string/TEXTO"
+                android:textColor="#000000"
+                app:backgroundTint="#6D648B"
                 app:cornerRadius="50sp" />
         </LinearLayout>
 

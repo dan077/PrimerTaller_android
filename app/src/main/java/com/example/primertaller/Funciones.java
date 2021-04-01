@@ -33,7 +33,6 @@ public class Funciones
         SharedPreferences preferences = pref.getSharedPreferences("Credenciales",MODE_PRIVATE);
        String correo =  preferences.getString("user","");
        return  SearchUser(correo);
-
     }
 
     public final static boolean isValidEmail(String target) {

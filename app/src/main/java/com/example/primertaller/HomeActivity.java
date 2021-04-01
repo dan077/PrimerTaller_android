@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         // ayuda.setOnClickListener(this);
          //home.setOnClickListener(this);
          //exit.setOnClickListener(this);
-        adminFunciones.menuHomeListener(ayuda,home,exit);
+        adminFunciones.menuHomeListener(ayuda,home,exit); //le agrego los listeners
 
         nombre.setText(gsonObj.get("nombre").getAsString()+ " " +gsonObj.get("apellido").getAsString());
 

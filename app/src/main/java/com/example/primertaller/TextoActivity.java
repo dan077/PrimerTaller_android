@@ -38,44 +38,30 @@ public class TextoActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnvalidarcb:
-                if (negrita.isChecked()){
+
+                //negrita & italic
+                if(negrita.isChecked() && italica.isChecked()){
+                    texto.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
+                }
+                else if (negrita.isChecked() && !italica.isChecked()){
                     texto.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-                }else{
+                }
+                else if(!negrita.isChecked() && italica.isChecked()){
+                    texto.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
+                }
+                else{
                     texto.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 }
 
-                if (italica.isChecked()){
-                    texto.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
-                }else{
-                    texto.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-                    if (negrita.isChecked()){
-                        texto.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
-                    }
-                }
+                //subrayado
 
                 if (subrayada.isChecked()){
                     texto.setPaintFlags(texto.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-                    if (negrita.isChecked()){
-                        texto.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-                    }
-                    if (italica.isChecked()){
-                        texto.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
-                    }
-                    if (italica.isChecked() && negrita.isChecked()){
-                        texto.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
-                    }
+
                 }else{
                     texto.setPaintFlags(texto.getPaintFlags() & ~Paint.UNDERLINE_TEXT_FLAG);
-                    if (negrita.isChecked()){
-                        texto.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-                    }
-                    if (italica.isChecked()){
-                        texto.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
-                    }
-                    if (italica.isChecked() && negrita.isChecked()){
-                        texto.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
-                    }
                 }
+
                 break;
         }
     }
