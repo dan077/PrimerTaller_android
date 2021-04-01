@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,6 +24,8 @@ public class VoltajeActivity extends AppCompatActivity implements View.OnClickLi
     AlertDialog.Builder builder;
     int res,res1,res2,res3,v1,v2,v3;
     float rest, corriente1,vt;
+    ImageButton ayuda, home, exit;
+    Funciones adminFunciones = new Funciones(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,9 @@ public class VoltajeActivity extends AppCompatActivity implements View.OnClickLi
         resistencia1 = findViewById(R.id.edtresist1);
         corriente = findViewById(R.id.edtcorriente);
         check_paralelo = findViewById(R.id.chb_paralelo);
+        ayuda = (ImageButton) findViewById(R.id.imgbtnayuda);
+        home = (ImageButton) findViewById(R.id.imgbtnhome);
+        exit = (ImageButton) findViewById(R.id.imgbtnexit);
 
 
         spinner =findViewById(R.id.spresistencia);
@@ -42,7 +48,7 @@ public class VoltajeActivity extends AppCompatActivity implements View.OnClickLi
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-
+        adminFunciones.menuHomeListener(ayuda,home,exit);
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -64,7 +70,7 @@ public class VoltajeActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-
+        adminFunciones.menuHomeAccion(ayuda,home,exit,v);
 
         switch (v.getId()){
             case R.id.btnhallarvoltaje:

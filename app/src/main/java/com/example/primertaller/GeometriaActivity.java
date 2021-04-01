@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ public class GeometriaActivity extends AppCompatActivity implements AdapterView.
     Spinner spinner;
     EditText coorx1, coory1, coorx2, coory2;
     Button calcular;
+    ImageButton ayuda, home, exit;
+    Funciones adminFunciones = new Funciones(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,11 @@ public class GeometriaActivity extends AppCompatActivity implements AdapterView.
         coory2 = findViewById(R.id.edtcoory2);
         calcular = findViewById(R.id.btncalcular);
         spinner = findViewById(R.id.spinnergeometria);
+        ayuda = (ImageButton) findViewById(R.id.imgbtnayuda);
+        home = (ImageButton) findViewById(R.id.imgbtnhome);
+        exit = (ImageButton) findViewById(R.id.imgbtnexit);
+
+        adminFunciones.menuHomeListener(ayuda,home,exit);
 
 
 
@@ -57,6 +65,7 @@ public class GeometriaActivity extends AppCompatActivity implements AdapterView.
 
     @Override
     public void onClick(View v) {
+        adminFunciones.menuHomeAccion(ayuda,home,exit,v);
         switch (v.getId()){
             case R.id.btncalcular:
                 if (!coorx1.getText().toString().isEmpty() && !coory1.getText().toString().isEmpty() &&

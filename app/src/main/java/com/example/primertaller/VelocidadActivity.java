@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 public class VelocidadActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button hallar;
     EditText distancia, tiempo;
     float velocidad, dist, time;
+    ImageButton ayuda, home, exit;
+    Funciones adminFunciones = new Funciones(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,12 +24,18 @@ public class VelocidadActivity extends AppCompatActivity implements View.OnClick
         hallar = findViewById(R.id.btnhallarvelocidad);
         distancia = findViewById(R.id.edtdistancia);
         tiempo = findViewById(R.id.edttiempo);
+        ayuda = (ImageButton) findViewById(R.id.imgbtnayuda);
+        home = (ImageButton) findViewById(R.id.imgbtnhome);
+        exit = (ImageButton) findViewById(R.id.imgbtnexit);
 
         hallar.setOnClickListener(this);
+
+        adminFunciones.menuHomeListener(ayuda,home,exit);
     }
 
     @Override
     public void onClick(View v) {
+        adminFunciones.menuHomeAccion(ayuda,home,exit,v);
         switch (v.getId()){
             case R.id.btnhallarvelocidad:
                 if (!distancia.getText().toString().isEmpty() && !tiempo.getText().toString().isEmpty()){

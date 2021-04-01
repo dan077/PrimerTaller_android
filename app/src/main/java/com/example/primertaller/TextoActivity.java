@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class TextoActivity extends AppCompatActivity implements View.OnClickListener {
@@ -17,6 +18,8 @@ public class TextoActivity extends AppCompatActivity implements View.OnClickList
     EditText texto;
     CheckBox negrita,italica,subrayada;
     Button validar;
+    ImageButton ayuda, home, exit;
+    Funciones adminFunciones = new Funciones(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +32,19 @@ public class TextoActivity extends AppCompatActivity implements View.OnClickList
         subrayada = findViewById(R.id.cbsubrayada);
         validar = findViewById(R.id.btnvalidarcb);
         texto.setMovementMethod(new ScrollingMovementMethod());
+        ayuda = (ImageButton) findViewById(R.id.imgbtnayuda);
+        home = (ImageButton) findViewById(R.id.imgbtnhome);
+        exit = (ImageButton) findViewById(R.id.imgbtnexit);
+
 
         validar.setOnClickListener(this);
+        adminFunciones.menuHomeListener(ayuda,home,exit);
 
     }
 
     @Override
     public void onClick(View v) {
+        adminFunciones.menuHomeAccion(ayuda,home,exit,v);
         switch (v.getId()){
             case R.id.btnvalidarcb:
 
