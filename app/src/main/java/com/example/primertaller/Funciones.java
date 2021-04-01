@@ -234,8 +234,23 @@ public class Funciones
             Intent i = new Intent(pref,HomeActivity.class);
             pref.startActivity(i);
         }
-        if (cerrarSesion.getId() == accion.getId()){
-            CerrarSesion();
+        if (cerrarSesion.getId() == accion.getId())
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(pref);
+
+            builder.setTitle("Cerrar sesion");
+
+            builder.setMessage("¿Desea Cerrar sesion?");
+            builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    CerrarSesion();
+                }
+            });
+            builder.setNegativeButton("NO", null);
+            builder.show();
+
+
+
         }
 
     }
