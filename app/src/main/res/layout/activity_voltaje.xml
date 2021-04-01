@@ -25,8 +25,8 @@
             android:orientation="horizontal" />
 
         <androidx.cardview.widget.CardView
-            android:layout_width="110sp"
-            android:layout_height="110sp"
+            android:layout_width="80sp"
+            android:layout_height="80sp"
             android:layout_gravity="center"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="20sp"
@@ -51,9 +51,9 @@
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Seleccione la cantidad de resistencias"
+                android:text="Seleccione la cantidad de resistencias:"
                 android:textColor="#FFFFFF"
-                android:textSize="22sp" />
+                android:textSize="18sp" />
 
             <Spinner
                 android:id="@+id/spresistencia"
@@ -124,29 +124,30 @@
                 android:ems="10"
                 android:inputType="number|numberDecimal" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1.4"
-            android:orientation="vertical">
-
-            <CheckBox
-                android:id="@+id/chb_paralelo"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Resistencias en paralelo"
-                android:textColor="#FFFFFF" />
+                android:layout_height="match_parent"
+                android:layout_weight="1.4"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnhallarvoltaje"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/HALLAR_VOLTAJE"
-                android:textSize="18sp"
-                app:backgroundTint="#388E3C"
-                app:cornerRadius="20sp" />
+                <CheckBox
+                    android:id="@+id/chb_paralelo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Resistencias en paralelo"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/btnhallarvoltaje"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/HALLAR_VOLTAJE"
+                    android:textSize="18sp"
+                    app:backgroundTint="#388E3C"
+                    app:cornerRadius="20sp" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

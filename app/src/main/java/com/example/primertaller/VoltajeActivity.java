@@ -82,6 +82,19 @@ public class VoltajeActivity extends AppCompatActivity implements View.OnClickLi
 
                 //Toast.makeText(getApplicationContext(),""+corriente1,Toast.LENGTH_LONG).show();
 
+                if(resistencia_1.isEmpty()){
+                    resistencia1.setError("Campo vacio");
+                }
+                if(resistencia_2.isEmpty()){
+                    resistencia2.setError("Campo vacio");
+                }
+                if(resistencia_3.isEmpty() && res !=2){
+                    resistencia3.setError("Campo vacio");
+                }
+                if(corriente_1.isEmpty()){
+                    corriente.setError("Campo vacio");
+                }
+
                 if(check_paralelo.isChecked()){
                     if (res ==2){
                         if (!(resistencia_1.isEmpty() || resistencia_2.isEmpty() || corriente_1.isEmpty())) {
