@@ -1,11 +1,17 @@
 package com.example.primertaller;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -21,9 +27,19 @@ public class Funciones
         pref = _pref;
     }
 
+    //Obtener info de usuarios.
+
+    public String obtenerUsuario(){
+        SharedPreferences preferences = pref.getSharedPreferences("Credenciales",MODE_PRIVATE);
+       String correo =  preferences.getString("user","");
+       return  SearchUser(correo);
+
+    }
+
     public final static boolean isValidEmail(String target) {
         return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
+
 
 
     public  void CreateUsuarios(String usuarios)
@@ -67,6 +83,28 @@ public class Funciones
 
         }
         return  false;
+    }
+
+    public String SearchUser(String _correo){
+        if(_correo.isEmpty()){
+            return  "";
+        }
+
+        String usuarios = ObtenerUsuarios();
+
+        JsonParser parser = new JsonParser();
+        JsonArray gsonArr = parser.parse(usuarios).getAsJsonArray();
+
+        for (JsonElement obj : gsonArr) {
+            // Object of array
+            JsonObject gsonObj = obj.getAsJsonObject();
+            String correo = gsonObj.get("correo").getAsString();
+            if(correo.equalsIgnoreCase(_correo)){
+                return gsonObj.toString();
+            }
+
+        }
+        return "";
     }
 
     public Boolean checkEmail(String _correo)
@@ -125,6 +163,9 @@ public class Funciones
         }
         edit.putBoolean("sesion", false);
         edit.commit();
+
+        Intent i = new Intent(pref,MainActivity.class);
+        pref.startActivity(i);
     }
 
     public void cargarPreferencias(EditText user, EditText password, CheckBox check_recordar)
@@ -148,6 +189,7 @@ public class Funciones
 
         edit.commit();
     }
+
 
     public boolean SetPassword(String _correo, String contraseña){
         int cont = 0;
@@ -175,4 +217,27 @@ public class Funciones
         return false;
     }
 
+    public void menuHomeListener(ImageButton ayuda, ImageButton home, ImageButton cerrarSesion){
+        ayuda.setOnClickListener((View.OnClickListener) pref);
+        home.setOnClickListener((View.OnClickListener) pref);
+        cerrarSesion.setOnClickListener((View.OnClickListener) pref);
+    }
+
+    public void menuHomeAccion(ImageButton ayuda, ImageButton home ,ImageButton cerrarSesion, View accion){
+        if(ayuda.getId() == accion.getId()){
+            new AlertDialog.Builder(pref)
+                    .setTitle("Ayuda")
+                    .setMessage("APP v1, realizada por DANIEL VEGA, LUIS PUELLO, ANDRES CASTRO")
+                    .setPositiveButton(android.R.string.yes, null).show();
+        }
+
+        if(home.getId() == accion.getId()) {
+            Intent i = new Intent(pref,HomeActivity.class);
+            pref.startActivity(i);
+        }
+        if (cerrarSesion.getId() == accion.getId()){
+            CerrarSesion();
+        }
+
+    }
 }

@@ -12,11 +12,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
     Button fisica,geometria,texto;
     ImageButton ayuda, home, exit;
     AlertDialog.Builder builder, help;
     Funciones adminFunciones = new Funciones(this);
+    JsonParser parser;
+    JsonObject gsonObj;
+    TextView nombre;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,39 +32,24 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
          fisica = findViewById(R.id.btnfisica);
          geometria = findViewById(R.id.btngeometria);
          texto = findViewById(R.id.btntexto);
+        nombre = findViewById(R.id.nombre_home_user);
+
          ayuda = (ImageButton) findViewById(R.id.imgbtnayuda);
          home = (ImageButton) findViewById(R.id.imgbtnhome);
          exit = (ImageButton) findViewById(R.id.imgbtnexit);
-
-
+         parser = new JsonParser();
+         gsonObj = parser.parse(adminFunciones.obtenerUsuario()).getAsJsonObject();
 
          fisica.setOnClickListener(this);
          geometria.setOnClickListener(this);
          texto.setOnClickListener(this);
-         ayuda.setOnClickListener(this);
-         home.setOnClickListener(this);
-         exit.setOnClickListener(this);
 
-         help = new AlertDialog.Builder(this);
-         help.setTitle("ayuda");
-         help.setMessage("APP v1, realizada por DANIEL VEGA, LUIS PUELLO, ANDRES CASTRO");
-         help.setPositiveButton("Ok", null);
+        // ayuda.setOnClickListener(this);
+         //home.setOnClickListener(this);
+         //exit.setOnClickListener(this);
+        adminFunciones.menuHomeListener(ayuda,home,exit);
 
-        builder = new AlertDialog.Builder(this);
-        builder.setTitle("Ayuda");
-        builder.setMessage("¿Quieres cerrar sesión?");
-
-        builder.setPositiveButton("Ok", new  DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(),"saliendo",Toast.LENGTH_LONG).show();
-                adminFunciones.CerrarSesion();
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);
-            }
-        });
-
-        builder.setNegativeButton("Cancelar", null);
+        nombre.setText(gsonObj.get("nombre").getAsString()+ " " +gsonObj.get("apellido").getAsString());
 
     }
 
@@ -65,19 +57,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Intent i;
-
+        adminFunciones.menuHomeAccion(ayuda,home,exit,v);
         switch (v.getId()){
-            case R.id.imgbtnexit:
-                AlertDialog dialog = builder.create();
-                dialog.show();
-                break;
-            case R.id.imgbtnayuda:
-                AlertDialog dialog1 = help.create();
-                dialog1.show();
-                break;
-            case R.id.imgbtnhome:
-                Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_LONG).show();
-                break;
             case R.id.btnfisica:
                 i = new Intent(this,FisicaActivity.class);
                 startActivity(i);
